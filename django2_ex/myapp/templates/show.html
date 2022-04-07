@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>show.html</title>
+</head>
+<body>
+{{ msg }}, {{gen}}
+{% if gen == '남' %}
+	<img src="../static/images/men.png" width="150"/>
+{% elif gen == '여'%}
+	<img src="../static/images/lady.png" width="150"/>
+{% endif %}
+</body>
+</html>
