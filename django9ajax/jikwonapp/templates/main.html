@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+function pred(){
+	  let send_data = {};
+	  let year = document.getElementById("year").value;
+	  send_data['year'] = year;
+	  //alert(send_data)
+	  
+	  $(".predictPay").empty();
+	  $(".payList").empty();
+	  
+	  $.ajax({
+	     url:"predict",
+	     type:"post",
+	     data:send_data,
+	     dataType:"json",
+	     success:function(data){
+	     	//alert(data);
+	     	$(".predictPay").append(`근무년수 <b>${year}년</b>에 대한 예상 연봉액 : ${data.new_pred}`);
+	     	$(".payList").append(data.pay_jik);
+	     },
+	     error:function(){
+	    	 alert('근무년수는 숫자만 가능!')
+	     }
+	  });
+}
+</script>
+</head>
+<body>
+<h3>근무 년수에 대한 예상 연봉 출력</h3>
+근무년수 입력 : <input type="text" id="year"> 년&nbsp;&nbsp;
+<button onclick="pred()">연봉 확인</button>
+<br><br>
+<div class="predictPay"></div>
+<br>
+<h3>직급별 연봉평균</h3>
+<div class="payList"></div>
+</body>
+</html>
