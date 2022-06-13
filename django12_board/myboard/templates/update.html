@@ -27,7 +27,7 @@ window.onload = function(){
 </script>
 </head>
 <body style="margin: 20px">
-** 새글 입력 **
+** 게시글 수정 **
 <form action="/board/updateok" name="upfrm" method="post">{% csrf_token %}
 <input type="hidden" name="id" value="{{data_one.id}}">
 

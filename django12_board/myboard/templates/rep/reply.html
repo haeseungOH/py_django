@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" 
+		crossorigin="anonymous"/>
+
+<script type="text/javascript">
+window.onload = function(){
+	document.querySelector("#btnReplyOk").onclick=chkFunc;
+}
+
+function chkFunc(){
+	//alert("a");
+	if(repfrm.name.value == ""){
+		alert("작성자를 입력하시오");
+		repfrm.name.focus();
+		return;
+	}
+	//나머진 생략 ...
+	
+	repfrm.submit();
+}
+</script>
+</head>
+<body style="margin: 20px">
+** 댓글 쓰기 **
+<form action="/board/replyok" name="repfrm" method="post">{% csrf_token %}
+<input type="hidden" name="id" value="{{data_one.id}}">
+<input type="hidden" name="gnum" value="{{data_one.gnum}}">
+<input type="hidden" name="onum" value="{{data_one.onum}}">
+<input type="hidden" name="nested" value="{{data_one.nested}}">
+
+<table style="width: 95%" class="table">
+  <tr>
+  	<td>작성자 : </td>
+  	<td><input type="text" name="name"></td>
+  </tr>
+  <tr>
+  	<td>비밀번호 : </td>
+  	<td><input type="text" name="passwd" value="123"></td>
+  </tr>
+  <tr>
+  	<td>이메일 : </td>
+  	<td><input type="email" name="mail" value="abc@abc.com"></td>
+  </tr>
+  <tr>
+  	<td>글제목 : </td>
+  	<td><input type="text" name="title" style="width: 99%"
+  				value="[RE]{{data_one.title}}"></td>
+  </tr>
+  <tr>
+  	<td>글내용 : </td>
+  	<td>
+  		<textarea rows="5" style="width: 99%" name="cont"></textarea>
+  	</td>
+  </tr>
+  <tr>
+  	<td colspan="2" style="text-align: center;">
+  		<input type="button" value="댓글 등록" id="btnReplyOk" class="btn btn-primary">
+  		<input type="button" value="이전 화면" class="btn btn-warning" onclick="history.back()">
+  			
+  	</td>
+  </tr>
+</table>
+
+</form> 
+</body>
+</html>

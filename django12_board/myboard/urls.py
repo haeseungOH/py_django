@@ -1,5 +1,5 @@
 from django.urls import path
-from myboard.views import view1
+from myboard.views import view1, view2
 
 urlpatterns = [
     path('list', view1.listFunc),
@@ -16,5 +16,7 @@ urlpatterns = [
     
     path('delete', view1.deleteFunc),
     path('deleteok', view1.deleteOkFunc),
-   
+    
+    path('reply', view2.replyFunc),
+    path('replyok', view2.replyOkFunc),  
 ]
