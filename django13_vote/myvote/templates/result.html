@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h2>{{question.question_text}}</h2>
+결과 : <br>
+<ul>
+{% for choice in question.choice_set.all %}
+	<li>
+		{{choice.choice_text}} - {{choice.votes}}표 
+		<!--  {{choice.votes|pluralize}} : 복수이면 뒤에 s가 붙음 -->
+		{% comment "주석 이유" %}
+		장고에서 사용하는 주석 방법
+		{% endcomment%}
+	</li>
+{% endfor %}
+</ul>
+<br>
+<a href="{% url 'detail' question.id %}">같은 항목 다시 투표</a>
+<br>
+<a href="/gogo/">투표 초기 화면</a>
+</body>
+</html>
